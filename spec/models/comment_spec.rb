@@ -7,7 +7,7 @@ RSpec.describe Comment, type: :model do
   
   describe "attributes" do
       it "has a body attribute" do
-          expect(comment).to have_attributes(body: "Comment Body")
+          expect(comment).to have_attributes(body: "Crakomment Body")
       end
   end
 end
