@@ -10,6 +10,7 @@ group :production do
 end
 
 group :development do
+  gem 'pry-rails'
   gem 'sqlite3'
 end
 
@@ -57,4 +58,5 @@ group :development do
 end
 
 gem 'bootstrap-sass'
+
 
