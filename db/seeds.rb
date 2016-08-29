@@ -25,3 +25,21 @@ posts = Post.all
   puts "Seed finished"
   puts "#{Post.count} posts created"
   puts "#{Comment.count} comments created"
+  
+  # Create Advertisement
+50.times do
+    
+    # 1 
+  Advertisement.create!(
+    
+      title: RandomData.random_sentence,
+      body: RandomData.random_paragraph,
+      price: RandomData.random_numbers
+    )
+end
+posts = Advertisement.all
+
+  
+  puts "Seed finished"
+  puts "#{Advertisement.count} Advertisements created"
+

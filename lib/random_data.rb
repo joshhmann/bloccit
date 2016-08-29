@@ -24,5 +24,9 @@ module RandomData
     letters.shuffle!
     letters[0,rand(3..8)].join
   end
-end
     
+  def self.random_numbers
+    numbers = 100
+    numbers
+  end
+end
