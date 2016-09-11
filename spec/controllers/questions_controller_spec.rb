@@ -108,13 +108,13 @@ RSpec.describe QuestionsController, type: :controller do
       end
       describe "DELETE destory" do
         it "deletes the question" do
-          delete :destory, {id: my_question.id}
+          delete :destroy, {id: my_question.id}
           count = Question.where({id: my_question.id}).size
           expect(count).to eq 0
         end
         
         it "redirects to questions index" do
-          delete :destory, {id: my_question.id}
+          delete :destroy, {id: my_question.id}
           expect(response).to redirect_to questions_path
         end
       end
