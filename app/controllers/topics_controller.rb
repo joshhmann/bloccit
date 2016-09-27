@@ -11,7 +11,8 @@ class TopicsController < ApplicationController
     @topic = Topic.new
   end
   
-     def create
+  
+  def create
      @topic = Topic.new
      @topic.name = params[:topic][:name]
      @topic.description = params[:topic][:description]
@@ -24,12 +25,12 @@ class TopicsController < ApplicationController
        flash.now[:alert] = "Error creating topic. Please try again."
        render :new
      end
-   end
+  end
    
-   def edit
+  def edit
      @topic = Topic.find(params[:id])
-   end
-      def update
+  end
+  def update
      @topic = Topic.find(params[:id])
  
      @topic.name = params[:topic][:name]
@@ -43,9 +44,9 @@ class TopicsController < ApplicationController
        flash.now[:alert] = "Error saving topic. Please try again."
        render :edit
      end
-   end
+  end
    
-      def destroy
+  def destroy
      @topic = Topic.find(params[:id])
  
      if @topic.destroy
@@ -55,5 +56,5 @@ class TopicsController < ApplicationController
        flash.now[:alert] = "There was an error deleting the topic."
        render :show
      end
-   end
+  end
 end
