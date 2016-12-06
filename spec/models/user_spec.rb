@@ -1,4 +1,6 @@
 require 'rails_helper'
+include RandomData
+include SessionsHelper
 
 RSpec.describe User, type: :model do
   let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "password") }
@@ -25,9 +27,49 @@ RSpec.describe User, type: :model do
     it "should have name and email attributes" do
       expect(user).to have_attributes(name: "Bloccit User", email: "user@bloccit.com", password: "password") 
     end
+    #Role specs start --------------
+    it "responds to role" do
+      expect(user).to respond_to(:role)
+    end
+    
+    it "responds to admin?" do
+      expect(user).to respond_to(:admin?)
+    end
+    it "responds to member?" do
+      expect(user).to respond_to(:member?)
+    end
+  end
+  
+  describe "roles" do 
+    
+    it "is member by default" do
+      expect(user.role).to eq("member")
+    end
+    
+    context "member user" do 
+      expect(user.member?).to be_truthy
+    end
+    
+    it "returns false for #admin?" do
+      expect(user.admin?).to be_falsey
+    end
+  end
+  
+  context "admin user" do
+    before do
+      user.admin!
+    end
+    
+    it "returns false for #member?" do
+      expect(user.member?).to be_falsey
+    end
+    
+    it "returns true for #admin?" do
+      expect(user.admin?).to be_truthy
+    end
   end
 end
-
+# role specs end ----------------------------
   describe "invalid user" do
     let(:user_with_invalid_name) { User.new(name: "", email: "user@bloccit.com") }
     let(:user_with_invalid_email) { User.new(name: "Bloccit User", email: "") }
