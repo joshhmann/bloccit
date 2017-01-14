@@ -67,10 +67,10 @@ class PostsController < ApplicationController
       params.require(:post).permit(:title, :body)
     end
   
-    def authorize_user
-      post = Post.find(params[:id])
+  def authorize_user
+    post = Post.find(params[:id])
       
-      unless current_user == post.user || current_user.admin?
+    unless current_user == post.user || current_user.admin? || current_user.moderator?
       redirect_to [post.topic, post]
     end
   end

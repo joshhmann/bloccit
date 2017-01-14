@@ -16,7 +16,7 @@ class TopicsController < ApplicationController
     @topic = Topic.new
   end
   
-     def create
+    def create
       @topic = Topic.new(topic_params)
  
         if @topic.save
@@ -26,7 +26,7 @@ class TopicsController < ApplicationController
         flash.now[:alert] = "Error creating topic. Please try again."
         render :new
         end
-      end
+    end
    
    def edit
      @topic = Topic.find(params[:id])
@@ -62,8 +62,8 @@ class TopicsController < ApplicationController
      params.require(:topic).permit(:name, :description, :public)
    end
    
-   def authorize_user
-     unless current_user.admin?
+  def authorize_user
+    unless current_user.admin?
       flash[:alert] = "You must be an admin to do thought."
       redirect_to topics_path
     end

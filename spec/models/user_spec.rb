@@ -25,9 +25,10 @@ RSpec.describe User, type: :model do
   
   describe "attributes" do
     it "should have name and email attributes" do
-      expect(user).to have_attributes(name: "Bloccit User", email: "user@bloccit.com", password: "password") 
+      expect(user).to have_attributes(name: "Bloccit User", email: "user@bloccit.com") 
     end
-    #Role specs start --------------
+  end
+  describe "methods" do
     it "responds to role" do
       expect(user).to respond_to(:role)
     end
@@ -35,40 +36,47 @@ RSpec.describe User, type: :model do
     it "responds to admin?" do
       expect(user).to respond_to(:admin?)
     end
-    it "responds to member?" do
+    
+    it "responds to member" do
       expect(user).to respond_to(:member?)
     end
+    
+    it "responds to moderator" do
+      expect(user).to respond_to(:moderator?)
   end
   
-  describe "roles" do 
+  
+  describe "roles" do
     
     it "is member by default" do
       expect(user.role).to eq("member")
     end
     
-    context "member user" do 
-      expect(user.member?).to be_truthy
+    context "member user" do
+      it "returns true for #member?" do
+        expect(user.member?).to be_truthy
+      end
+      
+      it "reutrns false for #admin" do
+        expect(user.admin?).to be_falsey
+      end
     end
     
-    it "returns false for #admin?" do
-      expect(user.admin?).to be_falsey
+    context "admin user" do
+      before do
+        user.admin!
+      end
+      
+      it "returns false for #member?" do
+        expect(user.member?).to be_falsey
+      end
+      
+      it "returns true for #admin?" do
+        expect(user.admin?).to be_truthy
+      end
     end
   end
-  
-  context "admin user" do
-    before do
-      user.admin!
-    end
     
-    it "returns false for #member?" do
-      expect(user.member?).to be_falsey
-    end
-    
-    it "returns true for #admin?" do
-      expect(user.admin?).to be_truthy
-    end
-  end
-end
 # role specs end ----------------------------
   describe "invalid user" do
     let(:user_with_invalid_name) { User.new(name: "", email: "user@bloccit.com") }
@@ -82,4 +90,5 @@ end
       expect(user_with_invalid_email).to_not be_valid
     end
   end
+end
 
