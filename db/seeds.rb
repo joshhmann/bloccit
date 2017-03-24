@@ -42,7 +42,7 @@ posts = Post.all
 
 100.times do
   Comment.create!(
-    
+      user: users.sample,
       post: posts.sample,
       body: RandomData.random_paragraph
     )
@@ -62,6 +62,7 @@ posts = Post.all
    email:    'member@example.com',
    password: 'helloworld'
  )
+ 
   
   puts "Seed finished"
   puts "#{User.count} users created"
