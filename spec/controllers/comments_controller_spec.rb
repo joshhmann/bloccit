@@ -59,7 +59,7 @@ RSpec.describe CommentsController, type: :controller do
       end
       
       it "redirects to the post show view" do
-        post :create, post_id: my_postl.id, comment: {body: RandomData.random_sentence}
+        post :create, post_id: my_post.id, comment: {body: RandomData.random_sentence}
         expect(response).to redirect_to [my_topic, my_post]
       end
     end
