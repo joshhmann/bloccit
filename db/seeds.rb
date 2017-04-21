@@ -2,7 +2,7 @@ require 'random_data'
 
 # Create Users
 
-5.times do 
+2.times do 
   User.create!(
     
     name: RandomData.random_name,
