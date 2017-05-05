@@ -5,9 +5,12 @@ class CommentsController < ApplicationController
   before_action :authorize_user, only: [:destroy]
   
   def create
-    
-    @post =  Post.find(params[:post_id])
-    comment = @post.comments.new(comment_params)
+    if params[:post_id]
+      commentable =  Post.find(params[:post_id])
+    else
+    end
+    comment = Comment.new(comment_params)
+    comment.commentable = commentable
     comment.user = current_user
     
     if comment.save
