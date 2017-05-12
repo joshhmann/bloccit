@@ -7,7 +7,10 @@ class CommentsController < ApplicationController
   def create
     if params[:post_id]
       commentable =  Post.find(params[:post_id])
-    else
+      redirect = [commentable.topic, commentable]
+    else 
+      commentable = Topic.find(params[:topic_id])
+      redirect = commentable 
     end
     comment = Comment.new(comment_params)
     comment.commentable = commentable
@@ -16,11 +19,11 @@ class CommentsController < ApplicationController
     if comment.save
       flash[:notice] ="Comment saved successfully."
       
-      redirect_to [@post.topic, @post]
+      redirect_to redirect 
     else
       flash[:alert] = "Comment failed to save."
       
-      redirect_to [@post.topic, @post]
+      redirect_to redirect 
     end
   end
   
