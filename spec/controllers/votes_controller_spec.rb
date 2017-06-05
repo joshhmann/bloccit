@@ -54,7 +54,7 @@ RSpec.describe VotesController, type: :controller do
       it ":back redirect to post show page" do
         request.env["HTTP_REFERER"] = topic_post_path(my_topic, user_post)
         post :up_vote, post_id: user_post.id
-        expect(reponse).to redirect_to([my_topic, user_post])
+        expect(response).to redirect_to([my_topic, user_post])
       end
       
       it ":back redirects to  post topic show" do
