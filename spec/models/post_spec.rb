@@ -80,6 +80,7 @@ RSpec.describe Post, type: :model do
       describe "#after_create" do 
         
         it "sets upvote is eql to one" do
+          post = Post.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user, topic: topic)
           expect(post.up_votes).to eq(1)
         end
         
