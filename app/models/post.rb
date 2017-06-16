@@ -3,9 +3,9 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_many :labelings, as: :labelable
   has_many :labels, through: :labelings
-  has_many :favorites, dependent: :destroy
     
   default_scope { order('rank DESC') }
 
@@ -35,5 +35,4 @@ class Post < ActiveRecord::Base
     new_rank = points + age_in_days
     update_attribute(:rank, new_rank)
   end
-  
 end
