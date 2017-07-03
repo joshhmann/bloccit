@@ -17,5 +17,8 @@ class User < ActiveRecord::Base
     length: { minimum: 3, maximum: 254 }
     has_secure_password
     enum role: [:member, :admin, :moderator]
-                
+           
+  def favorite_for(post)
+    favorites.where(post_id: post.id).first
+  end
 end
