@@ -59,7 +59,7 @@ group :development do
 end
 
 gem 'bootstrap-sass'
-
+gem 'figaro', '1.0'
 # Used for encrypting User passwords
   gem 'bcrypt'
 
