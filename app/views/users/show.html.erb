@@ -19,8 +19,15 @@
    </div>
  </div>
  
+ <% if @user.posts.empty? %>
+ <p><%= @user.name %> has not submitted any posts yet.</p>
+ 
+ <% else %>
+ 
  <h2>Posts</h2>
  <%= render @user.posts %>
  
  <h2>Comments</h2>
  <%= render @user.comments %>
+ 
+ <% end %>
