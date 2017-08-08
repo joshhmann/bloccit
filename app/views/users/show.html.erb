@@ -13,6 +13,7 @@
          <small>
            <%= pluralize(@user.posts.count, 'post') %>,
            <%= pluralize(@user.comments.count, 'comment') %>
+           <%= pluralize(@user.favorites.count, 'favorites') %>
          </small>
        </div>
      </div>
@@ -29,5 +30,8 @@
  
  <h2>Comments</h2>
  <%= render @user.comments %>
+ 
+ <h2>Favorites</h2>
+   <%= render partial: @user.favorites %>
  
  <% end %>

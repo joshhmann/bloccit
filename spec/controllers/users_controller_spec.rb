@@ -85,6 +85,14 @@ end
       expect(assigns(:user)).to eq(factory_user)
     end
   end
+  
+  describe "SHOW favorite posts" do
+    
+    it "passes favorite posts in @user profiles" do
+      get :show, {id: factory_user.id}
+      expect(user).to respond_to(:favorites)
+    end
+  end
 end
   
 
