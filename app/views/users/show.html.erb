@@ -32,6 +32,15 @@
  <%= render @user.comments %>
  
  <h2>Favorites</h2>
-   <%= render partial: @user.favorites %>
+<% @user.favorites.each do |favorite| %>
+  <% post = favorite.post %>
+  <h3><%= post.title %></h3>
+  <small>
+    submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> 
+    <% avatar_url = post.user.avatar_url(128) %>
+    <%= image_tag avatar_url, class: 'media-object' %>
+  </small>
+
+<% end %>
  
  <% end %>
