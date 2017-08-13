@@ -4,18 +4,24 @@ class VotesController < ApplicationController
   
   def up_vote 
     update_vote(1)
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
    
   end
   
   def down_vote
     update_vote(-1)
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
 
   end
   
-  respond_to do |format|
-    format.html
-    format.js
-  end
   
   private
   def update_vote(new_value)

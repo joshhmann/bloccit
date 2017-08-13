@@ -34,14 +34,14 @@ RSpec.describe VotesController, type: :controller do
       
       it "the users first vote increases number of post vote by one" do
         votes = user_post.votes.count
-        post :up_vote, post_id: user_post.id
+        post :up_vote, format: :js, post_id: user_post.id
         expect(user_post.votes.count).to eq(votes + 1)
       end
       
       it "the user second vote does not increase the number of votes" do
-        post :up_vote, post_id: user_post.id
+        post :up_vote, format: :js, post_id: user_post.id
         votes = user_post.votes.count
-        post :up_vote, post_id: user_post.id
+        post :up_vote, format: :js, post_id: user_post.id
         expect(user_post.votes.count).to eq(votes)
       end
       
@@ -67,14 +67,14 @@ RSpec.describe VotesController, type: :controller do
     describe "POST down_vote" do
       it "the users first vote increases number of post votes by one" do
         votes = user_post.votes.count
-        post :down_vote, post_id: user_post.id
+        post :down_vote, format: :js, post_id: user_post.id
         expect(user_post.votes.count).to eq(votes + 1)
       end
       
       it "the users second vote does not increase the number of votes" do
-        post :down_vote, post_id: user_post.id
+        post :down_vote, format: :js, post_id: user_post.id
         votes = user_post.votes.count
-        post :down_vote, post_id: user_post.id
+        post :down_vote, format: :js, post_id: user_post.id
         expect(user_post.votes.count).to eq(votes)
       end
       
