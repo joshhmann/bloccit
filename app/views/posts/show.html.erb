@@ -40,8 +40,8 @@
     <%= pluralize(@post.points, 'point') %>
     <div>
      <small>
-      <%= pluralize(@post.up_votes, 'up vote') %>
-      <%= pluralize(@post.down_votes, 'down vote') %>
+      <div class='js-votes-count'><%= pluralize(@post.up_votes, 'up vote') %></div>
+      <div class='js-votes-count'><%= pluralize(@post.down_votes, 'down vote') %></div>
      </small>
     </div>
    </h3>
