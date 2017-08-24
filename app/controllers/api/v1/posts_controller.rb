@@ -13,7 +13,10 @@ class Api::V1::PostsController < Api::V1::BaseController
   end
   
   def create
+    topic = Topic.find(params[:topic_id])
     post = Post.new(post_params)
+    post.topic = topic
+    post.user = @current_user
     
     if post.valid?
       post.save!
@@ -25,7 +28,6 @@ class Api::V1::PostsController < Api::V1::BaseController
   
   def destroy
     post = Post.find(params[:id])
-    
     if post.destroy
       render json: {message: "Post destroyed", status: 200}, status: 200
     else
